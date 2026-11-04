@@ -31,70 +31,97 @@
   <!-- APP PAGES CONTAINER -->
   <main class="flex-1 p-4 max-w-lg mx-auto w-full space-y-6">
     
-    <!-- 0. LANDING HOME PAGE (Visible to Logged-Out Visitors) -->
+    <!-- 0. LANDING HOME PAGE (Logged-Out) -->
     <section id="page-home" class="app-page space-y-6">
-      <!-- Hero Banner -->
       <div class="bg-gradient-to-br from-indigo-950/80 via-slate-900 to-pink-950/50 border border-slate-800 rounded-2xl p-6 text-center space-y-4 shadow-xl">
         <span class="text-[10px] bg-indigo-900/60 text-indigo-300 border border-indigo-700/50 px-3 py-1 rounded-full font-bold uppercase tracking-wider">Creator-First Platform</span>
         <h2 class="text-2xl font-black text-white leading-tight">You don't have to already be famous to be seen.</h2>
         <p class="text-xs text-slate-300 leading-relaxed">
           CreateSpace is where original work gets discovered. Publish music, art, writing, crafts, DIY, and AI creations, connect with fellow creators, and climb the Creator Ladder.
         </p>
-        
-        <div class="pt-2 flex flex-col sm:flex-row gap-2">
+        <div class="pt-2 flex flex-col gap-2">
           <button id="hero-signup-btn" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl text-xs transition shadow-lg shadow-indigo-600/30">Create Free Account</button>
           <button id="hero-login-btn" class="w-full bg-slate-900 border border-slate-700 text-slate-200 font-semibold py-3 rounded-xl text-xs transition">Sign In</button>
         </div>
       </div>
 
-      <!-- Feature Grid -->
       <div class="space-y-3">
         <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 text-center">What You Can Do On CreateSpace</h3>
-        
         <div class="grid grid-cols-1 gap-3">
           <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-start gap-3">
             <div class="w-8 h-8 rounded-lg bg-indigo-950 border border-indigo-800/50 flex items-center justify-center text-indigo-400 shrink-0"><i class="fa-solid fa-compass"></i></div>
             <div>
               <h4 class="text-xs font-bold text-white">"You Found Them First" Discovery</h4>
-              <p class="text-[11px] text-slate-400 mt-0.5">Fair algorithms rank creators based on recency and genuine audience activity—not raw follower counts.</p>
+              <p class="text-[11px] text-slate-400 mt-0.5">Fair algorithms rank creators based on recency and engagement—not raw follower count.</p>
             </div>
           </div>
-
           <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-start gap-3">
             <div class="w-8 h-8 rounded-lg bg-pink-950 border border-pink-800/50 flex items-center justify-center text-pink-400 shrink-0"><i class="fa-solid fa-shield-halved"></i></div>
             <div>
               <h4 class="text-xs font-bold text-white">Creator Ownership Records</h4>
-              <p class="text-[11px] text-slate-400 mt-0.5">Keep full rights to your work. Generate dynamic platform ownership and licensing records upon publication.</p>
+              <p class="text-[11px] text-slate-400 mt-0.5">Keep full rights to your work. Generate dynamic platform ownership records upon publication.</p>
             </div>
           </div>
-
           <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-start gap-3">
             <div class="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-800/50 flex items-center justify-center text-emerald-400 shrink-0"><i class="fa-solid fa-trophy"></i></div>
             <div>
               <h4 class="text-xs font-bold text-white">Challenges & Prompts</h4>
-              <p class="text-[11px] text-slate-400 mt-0.5">Participate in non-cash competitions, earn badges, and tap into 170+ creative spark prompts.</p>
+              <p class="text-[11px] text-slate-400 mt-0.5">Participate in free competitions, earn badges, and tap into 170+ creative spark prompts.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 1. FEED PAGE (Visible to Logged-In Users) -->
+    <!-- 1. FEED PAGE (Logged-In) -->
     <section id="page-feed" class="app-page space-y-4 hidden">
-      <div id="create-post-card" class="bg-slate-900 border border-slate-800 rounded-xl p-4">
-        <h3 class="text-sm font-semibold mb-2 text-indigo-300">Publish New Creation</h3>
-        <input id="post-title" type="text" placeholder="Creation Title..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm mb-2 text-white focus:outline-none focus:border-indigo-500" />
-        <textarea id="post-content" rows="3" placeholder="Share your original work, lyrics, art story, or prompt..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm mb-2 text-white focus:outline-none focus:border-indigo-500"></textarea>
+      <!-- Create Post Form -->
+      <div id="create-post-card" class="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
+        <h3 class="text-sm font-semibold text-indigo-300 flex items-center gap-2"><i class="fa-solid fa-cloud-arrow-up"></i> Publish New Creation</h3>
         
-        <div class="flex justify-between items-center gap-2">
-          <select id="post-category" class="bg-slate-950 border border-slate-800 text-xs text-slate-300 rounded-lg p-2 focus:outline-none">
-            <option value="Music">🎵 Music & Audio</option>
-            <option value="Art">🎨 Art & Design</option>
-            <option value="Writing">✍️ Writing & Poetry</option>
-            <option value="DIY">🛠️ DIY & Crafts</option>
-            <option value="AI">🤖 AI Creation</option>
-          </select>
-          <button id="submit-post-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-4 py-2 rounded-lg font-medium transition">Publish</button>
+        <input id="post-title" type="text" placeholder="Creation Title..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" />
+        <textarea id="post-content" rows="2" placeholder="Share your original work, song background, story, or lyrics..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-indigo-500"></textarea>
+        
+        <!-- 12 Target Categories -->
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="text-[10px] text-slate-400 uppercase font-semibold">Category</label>
+            <select id="post-category" class="w-full bg-slate-950 border border-slate-800 text-xs text-slate-300 rounded-lg p-2 focus:outline-none mt-1">
+              <option value="Music & Audio">🎵 Music & Audio</option>
+              <option value="Art & Digital Art">🎨 Art & Digital Art</option>
+              <option value="Photography">📷 Photography</option>
+              <option value="Writing & Books">✍️ Writing & Books</option>
+              <option value="Video">🎬 Video</option>
+              <option value="DIY & Crafts">🛠️ DIY & Crafts</option>
+              <option value="Woodworking & Handmade">🪚 Woodworking</option>
+              <option value="Fashion & Jewelry">💎 Fashion & Jewelry</option>
+              <option value="Design & Animation">📐 Design & Animation</option>
+              <option value="Games & Inventions">🕹️ Games & Inventions</option>
+              <option value="AI & Digital Creations">🤖 AI & Digital</option>
+              <option value="Other">🌟 Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-[10px] text-slate-400 uppercase font-semibold">AI Involvement</label>
+            <select id="post-ai-disclosure" class="w-full bg-slate-950 border border-slate-800 text-xs text-slate-300 rounded-lg p-2 focus:outline-none mt-1">
+              <option value="100% Original Human">100% Human Made</option>
+              <option value="AI-Assisted Elements">AI-Assisted Elements</option>
+              <option value="AI Generated Core">AI Generated Core</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Media Attachment -->
+        <div class="space-y-1">
+          <label class="text-[11px] text-slate-400 font-medium">Attach File (Audio, Video, Image, PDF):</label>
+          <input id="post-file" type="file" accept="audio/*,video/*,image/*,.pdf,.doc,.docx" class="w-full text-xs text-slate-400 bg-slate-950 border border-slate-800 rounded-lg p-2 file:mr-3 file:py-1 file:px-2.5 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-indigo-950 file:text-indigo-300 hover:file:bg-indigo-900" />
+        </div>
+
+        <div class="flex justify-end pt-1">
+          <button id="submit-post-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-5 py-2.5 rounded-lg font-semibold transition flex items-center gap-1.5">
+            <span id="upload-spinner" class="hidden"><i class="fa-solid fa-spinner fa-spin"></i></span>
+            <span>Publish Creation</span>
+          </button>
         </div>
       </div>
 
@@ -103,7 +130,7 @@
         <span class="text-[10px] bg-indigo-950 text-indigo-300 border border-indigo-800/50 px-2 py-0.5 rounded-full">You Found Them First</span>
       </div>
       <div id="feed-container" class="space-y-3">
-        <p class="text-slate-500 text-xs text-center py-4">Loading creations from Firebase...</p>
+        <p class="text-slate-500 text-xs text-center py-4">Loading creations...</p>
       </div>
     </section>
 
@@ -111,9 +138,8 @@
     <section id="page-discover" class="app-page space-y-4 hidden">
       <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-2">
         <h2 class="text-sm font-bold text-indigo-400 uppercase tracking-wide">You Found Them First</h2>
-        <p class="text-xs text-slate-400">Discover incredible new creators based on recency and engagement—not just follower count.</p>
+        <p class="text-xs text-slate-400">Discover new creators based on recency and engagement—not follower count.</p>
       </div>
-
       <div class="space-y-2">
         <h3 class="text-xs font-semibold text-slate-400 uppercase">Creator Ladder</h3>
         <div class="grid grid-cols-2 gap-2 text-xs">
@@ -129,33 +155,20 @@
     <section id="page-market" class="app-page space-y-4 hidden">
       <div class="bg-gradient-to-r from-indigo-900/40 to-pink-900/40 border border-indigo-800/50 rounded-xl p-4 space-y-2 text-center">
         <h2 class="text-base font-bold text-white">Creator Pro Starter</h2>
-        <p class="text-xs text-slate-300">Monetize your creations, sell physical/digital items, and get boosted discovery.</p>
+        <p class="text-xs text-slate-300">Monetize creations, sell items, and get boosted discovery.</p>
         <p class="text-xs font-semibold text-pink-400">$1.99/mo (First 2 Months) ➔ then $5.99/mo</p>
         <button class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-4 py-2 rounded-lg font-bold">Upgrade to Pro</button>
       </div>
-
-      <div class="space-y-2">
-        <h3 class="text-xs font-semibold text-slate-400 uppercase">Marketplace Products</h3>
-        <p class="text-xs text-slate-500 text-center py-6 border border-slate-800 rounded-xl bg-slate-900/30">No products listed yet. Pro subscribers can create marketplace listings!</p>
-      </div>
+      <p class="text-xs text-slate-500 text-center py-6 border border-slate-800 rounded-xl bg-slate-900/30">No products listed yet. Pro subscribers can create marketplace listings!</p>
     </section>
 
     <!-- 4. CHALLENGES PAGE -->
     <section id="page-challenges" class="app-page space-y-4 hidden">
-      <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Community Competitions</h2>
-      
-      <div class="space-y-3">
-        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2">
-          <div class="flex justify-between items-center"><span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded-full">FREE ENTRY</span><span class="text-xs text-slate-400">Ends in 3 days</span></div>
-          <h3 class="text-sm font-bold text-white">Original Song Challenge</h3>
-          <p class="text-xs text-slate-400">Write and upload an original acoustic or digital song track. Winners receive the Songwriter Badge!</p>
-        </div>
-
-        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2">
-          <div class="flex justify-between items-center"><span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded-full">FREE ENTRY</span><span class="text-xs text-slate-400">Ends in 5 days</span></div>
-          <h3 class="text-sm font-bold text-white">Art From Nothing Challenge</h3>
-          <p class="text-xs text-slate-400">Create a visual artwork using everyday household items or simple tools.</p>
-        </div>
+      <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Competitions</h2>
+      <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2">
+        <span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded-full">FREE ENTRY</span>
+        <h3 class="text-sm font-bold text-white">Original Song Challenge</h3>
+        <p class="text-xs text-slate-400">Upload an original acoustic or digital song track. Winners earn the Songwriter Badge!</p>
       </div>
     </section>
 
@@ -163,41 +176,79 @@
     <section id="page-prompts" class="app-page space-y-4 hidden">
       <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-3 text-center">
         <h2 class="text-base font-bold text-indigo-400">CREATE SOMETHING Generator</h2>
-        <p class="text-xs text-slate-400">Beat creator's block with over 170+ guided creative prompts.</p>
-        
-        <div id="prompt-box" class="bg-slate-950 border border-slate-800 p-4 rounded-lg text-left text-xs text-slate-200 min-h-[80px] flex items-center justify-center">
-          Tap "Generate Prompt" below to get your first creative spark!
+        <div id="prompt-box" class="bg-slate-950 border border-slate-800 p-4 rounded-lg text-left text-xs text-slate-200 min-h-[70px] flex items-center justify-center">
+          Tap below to generate a creative spark prompt!
         </div>
+        <button id="generate-prompt-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-5 py-2.5 rounded-lg font-semibold">Generate Prompt 🎲</button>
+      </div>
+    </section>
 
-        <button id="generate-prompt-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-5 py-2.5 rounded-lg font-semibold transition">Generate Prompt 🎲</button>
+    <!-- 6. USER PROFILE PAGE -->
+    <section id="page-profile" class="app-page space-y-4 hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 text-center space-y-3">
+        <div class="w-20 h-20 bg-indigo-950 border-2 border-indigo-500 rounded-full mx-auto flex items-center justify-center text-2xl text-indigo-400 font-bold overflow-hidden" id="profile-avatar-display">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <div>
+          <h2 id="profile-name" class="text-base font-bold text-white">Creator Name</h2>
+          <p id="profile-bio" class="text-xs text-slate-400 mt-1">No biography added yet.</p>
+        </div>
+        <button id="edit-profile-btn" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-4 py-2 rounded-lg font-medium border border-slate-700">Edit Profile</button>
       </div>
     </section>
 
   </main>
 
-  <!-- Bottom Navigation Bar (Hidden on Logged-Out Landing Page) -->
-  <nav id="app-nav" class="fixed bottom-0 inset-x-0 bg-slate-900/95 border-t border-slate-800 backdrop-blur p-2 flex justify-around items-center text-xs text-slate-400 z-40 hidden">
-    <button data-tab="feed" class="nav-tab flex flex-col items-center gap-1 text-indigo-400"><i class="fa-solid fa-house text-base"></i><span>Feed</span></button>
-    <button data-tab="discover" class="nav-tab flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-compass text-base"></i><span>Discover</span></button>
-    <button data-tab="market" class="nav-tab flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-store text-base"></i><span>Market</span></button>
-    <button data-tab="challenges" class="nav-tab flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-trophy text-base"></i><span>Challenges</span></button>
-    <button data-tab="prompts" class="nav-tab flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-lightbulb text-base"></i><span>Prompts</span></button>
-  </nav>
+  <!-- EDIT PROFILE MODAL -->
+  <div id="profile-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-sm space-y-4 relative">
+      <button id="close-profile-modal-btn" class="absolute top-4 right-4 text-slate-400 text-sm"><i class="fa-solid fa-xmark"></i></button>
+      <h2 class="text-base font-bold text-center">Edit Creator Profile</h2>
+      
+      <div class="space-y-3">
+        <input id="edit-display-name" type="text" placeholder="Display Name / Pen Name" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" />
+        <textarea id="edit-bio" rows="3" placeholder="Creator Bio & Tags..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-indigo-500"></textarea>
+      </div>
 
-  <!-- Auth Modal -->
+      <button id="save-profile-btn" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-2.5 rounded-lg font-medium text-sm transition">Save Profile</button>
+    </div>
+  </div>
+
+  <!-- OWNERSHIP CERTIFICATE INSPECTOR MODAL -->
+  <div id="ownership-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border border-indigo-800/80 rounded-2xl p-6 w-full max-w-sm space-y-4 relative">
+      <button id="close-ownership-modal-btn" class="absolute top-4 right-4 text-slate-400 text-sm"><i class="fa-solid fa-xmark"></i></button>
+      <div class="text-center space-y-1">
+        <i class="fa-solid fa-shield-halved text-2xl text-indigo-400"></i>
+        <h2 class="text-base font-bold text-white">Creation Ownership Record</h2>
+        <p class="text-[10px] text-slate-400 uppercase tracking-widest">CreateSpace Verification System</p>
+      </div>
+      
+      <div class="bg-slate-950 border border-slate-800 p-3 rounded-xl space-y-2 text-xs">
+        <div><span class="text-slate-500">Creation Title:</span> <span id="cert-title" class="font-bold text-white"></span></div>
+        <div><span class="text-slate-500">Creator Handle:</span> <span id="cert-author" class="text-indigo-300"></span></div>
+        <div><span class="text-slate-500">Category:</span> <span id="cert-category" class="text-slate-300"></span></div>
+        <div><span class="text-slate-500">AI Disclosure:</span> <span id="cert-ai" class="text-amber-400"></span></div>
+        <div><span class="text-slate-500">Publication Timestamp:</span> <span id="cert-date" class="text-slate-400"></span></div>
+        <div><span class="text-slate-500">Record ID:</span> <span id="cert-id" class="text-[10px] text-slate-600 font-mono"></span></div>
+      </div>
+
+      <p class="text-[10px] text-slate-500 italic text-center leading-tight">
+        "This record documents the creator's platform declaration of original authorship; it is not a government copyright registration."
+      </p>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL -->
   <div id="auth-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-sm space-y-4 relative">
       <button id="close-modal-btn" class="absolute top-4 right-4 text-slate-400 text-sm"><i class="fa-solid fa-xmark"></i></button>
-      <h2 id="modal-title" class="text-lg font-bold text-center">Join CreateSpace</h2>
-      <p class="text-xs text-slate-400 text-center">Create. Share. Get Discovered.</p>
-      
+      <h2 class="text-lg font-bold text-center">Join CreateSpace</h2>
       <div class="space-y-3 pt-2">
         <input id="auth-email" type="email" placeholder="Email Address" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" />
-        <input id="auth-password" type="password" placeholder="Password (6+ characters)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" />
+        <input id="auth-password" type="password" placeholder="Password (6+ chars)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" />
       </div>
-
       <p id="auth-error" class="text-xs text-red-400 hidden text-center"></p>
-
       <div class="space-y-2 pt-2">
         <button id="login-submit-btn" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-2.5 rounded-lg font-medium text-sm transition">Sign In</button>
         <button id="signup-submit-btn" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 py-2.5 rounded-lg font-medium text-sm transition">Create Account</button>
@@ -205,10 +256,19 @@
     </div>
   </div>
 
-  <!-- FIREBASE INTEGRATION & NAVIGATION SCRIPT -->
+  <!-- BOTTOM NAVIGATION BAR -->
+  <nav id="app-nav" class="fixed bottom-0 inset-x-0 bg-slate-900/95 border-t border-slate-800 backdrop-blur p-2 flex justify-around items-center text-xs text-slate-400 z-40 hidden">
+    <button data-tab="feed" class="nav-tab flex flex-col items-center gap-1 text-indigo-400"><i class="fa-solid fa-house text-base"></i><span>Feed</span></button>
+    <button data-tab="discover" class="nav-tab flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-compass text-base"></i><span>Discover</span></button>
+    <button data-tab="market" class="nav-tab flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-store text-base"></i><span>Market</span></button>
+    <button data-tab="challenges" class="nav-tab flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-trophy text-base"></i><span>Challenges</span></button>
+    <button data-tab="prompts" class="nav-tab flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-lightbulb text-base"></i><span>Prompts</span></button>
+    <button data-tab="profile" class="nav-tab flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-user text-base"></i><span>Profile</span></button>
+  </nav>
+
+  <!-- FIREBASE SCRIPT ENGINE -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
     import { 
       getAuth, 
       createUserWithEmailAndPassword, 
@@ -221,12 +281,20 @@
       collection, 
       addDoc, 
       getDocs, 
+      doc, 
+      setDoc, 
+      getDoc, 
       query, 
       orderBy, 
       serverTimestamp 
     } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { 
+      getStorage, 
+      ref, 
+      uploadBytes, 
+      getDownloadURL 
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
-    // Firebase Configuration
     const firebaseConfig = {
       apiKey: "AIzaSyC483ApX3naDbu-3XyXKblBxatocJUAHCg",
       authDomain: "createspace-82ddf.firebaseapp.com",
@@ -237,15 +305,14 @@
       measurementId: "G-J7LVRG8ZE6"
     };
 
-    // Initialize Services
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
     const auth = getAuth(app);
     const db = getFirestore(app);
+    const storage = getStorage(app);
 
     let currentUser = null;
 
-    // --- PAGE NAVIGATION ENGINE ---
+    // --- NAVIGATION ENGINE ---
     const navTabs = document.querySelectorAll('.nav-tab');
     const appPages = document.querySelectorAll('.app-page');
     const appNav = document.getElementById('app-nav');
@@ -260,7 +327,6 @@
       tab.addEventListener('click', () => {
         const targetTab = tab.getAttribute('data-tab');
         showPage(targetTab);
-
         navTabs.forEach(t => {
           t.classList.remove('text-indigo-400');
           t.classList.add('hover:text-slate-200');
@@ -273,40 +339,37 @@
     const prompts = [
       "Write a song chorus centered around starting over in a small town.",
       "Create a digital sketch using only 3 shades of blue and stark lighting.",
-      "Take a macro photo of an everyday object from an unusual angle.",
-      "Write a short 4-line poem about late-night coding or creation.",
-      "Design a minimalist album cover for an indie alternative track."
+      "Take a photo of an everyday object from an unusual angle.",
+      "Write a short 4-line poem about late-night creation."
     ];
     document.getElementById('generate-prompt-btn')?.addEventListener('click', () => {
       const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
       document.getElementById('prompt-box').textContent = randomPrompt;
     });
 
-    // --- AUTHENTICATION & ROUTING ---
+    // --- AUTH & PROFILE ENGINE ---
     const authModal = document.getElementById('auth-modal');
-    const closeModalBtn = document.getElementById('close-modal-btn');
+    const profileModal = document.getElementById('profile-modal');
     const authEmailInput = document.getElementById('auth-email');
     const authPasswordInput = document.getElementById('auth-password');
     const loginSubmitBtn = document.getElementById('login-submit-btn');
     const signupSubmitBtn = document.getElementById('signup-submit-btn');
     const authError = document.getElementById('auth-error');
-    const submitPostBtn = document.getElementById('submit-post-btn');
-    const feedContainer = document.getElementById('feed-container');
 
-    // Trigger buttons to open auth modal
     document.getElementById('open-auth-btn')?.addEventListener('click', () => authModal.classList.remove('hidden'));
     document.getElementById('hero-signup-btn')?.addEventListener('click', () => authModal.classList.remove('hidden'));
     document.getElementById('hero-login-btn')?.addEventListener('click', () => authModal.classList.remove('hidden'));
+    document.getElementById('close-modal-btn')?.addEventListener('click', () => authModal.classList.add('hidden'));
+    document.getElementById('close-profile-modal-btn')?.addEventListener('click', () => profileModal.classList.add('hidden'));
+    document.getElementById('close-ownership-modal-btn')?.addEventListener('click', () => document.getElementById('ownership-modal').classList.add('hidden'));
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       currentUser = user;
       const authStatusEl = document.getElementById('auth-status');
       
       if (user) {
-        // User logged in: Show Feed & Navbar
         showPage('feed');
         appNav.classList.remove('hidden');
-
         authStatusEl.innerHTML = `
           <div class="flex items-center gap-2">
             <span class="text-[11px] text-indigo-300 font-medium">${user.email.split('@')[0]}</span>
@@ -314,11 +377,10 @@
           </div>
         `;
         document.getElementById('logout-btn')?.addEventListener('click', () => signOut(auth));
+        loadUserProfile(user.uid);
       } else {
-        // Visitor logged out: Show Landing Home & Hide Navbar
         showPage('home');
         appNav.classList.add('hidden');
-
         authStatusEl.innerHTML = `
           <button id="open-auth-btn-header" class="bg-indigo-600 px-3 py-1.5 rounded-lg text-white font-semibold text-xs">Get Started</button>
         `;
@@ -332,10 +394,8 @@
         await createUserWithEmailAndPassword(auth, authEmailInput.value, authPasswordInput.value);
         authModal?.classList.add('hidden');
       } catch (err) {
-        if (authError) {
-          authError.textContent = err.message;
-          authError.classList.remove('hidden');
-        }
+        authError.textContent = err.message;
+        authError.classList.remove('hidden');
       }
     });
 
@@ -345,16 +405,102 @@
         await signInWithEmailAndPassword(auth, authEmailInput.value, authPasswordInput.value);
         authModal?.classList.add('hidden');
       } catch (err) {
-        if (authError) {
-          authError.textContent = err.message;
-          authError.classList.remove('hidden');
-        }
+        authError.textContent = err.message;
+        authError.classList.remove('hidden');
       }
     });
 
-    closeModalBtn?.addEventListener('click', () => authModal?.classList.add('hidden'));
+    // Profile Management
+    async function loadUserProfile(uid) {
+      try {
+        const userDoc = await getDoc(doc(db, "users", uid));
+        if (userDoc.exists()) {
+          const data = userDoc.data();
+          document.getElementById('profile-name').textContent = data.displayName || currentUser.email.split('@')[0];
+          document.getElementById('profile-bio').textContent = data.bio || "No biography added yet.";
+        } else {
+          document.getElementById('profile-name').textContent = currentUser.email.split('@')[0];
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
 
-    // --- FIRESTORE FEED ---
+    document.getElementById('edit-profile-btn')?.addEventListener('click', () => profileModal.classList.remove('hidden'));
+
+    document.getElementById('save-profile-btn')?.addEventListener('click', async () => {
+      const displayName = document.getElementById('edit-display-name').value;
+      const bio = document.getElementById('edit-bio').value;
+
+      if (!currentUser) return;
+      try {
+        await setDoc(doc(db, "users", currentUser.uid), {
+          displayName,
+          bio,
+          email: currentUser.email
+        }, { merge: true });
+
+        profileModal.classList.add('hidden');
+        loadUserProfile(currentUser.uid);
+      } catch (err) {
+        alert("Error saving profile: " + err.message);
+      }
+    });
+
+    // --- MEDIA UPLOADS & POSTING ENGINE ---
+    const submitPostBtn = document.getElementById('submit-post-btn');
+    const uploadSpinner = document.getElementById('upload-spinner');
+    const feedContainer = document.getElementById('feed-container');
+
+    submitPostBtn?.addEventListener('click', async () => {
+      const title = document.getElementById('post-title')?.value;
+      const content = document.getElementById('post-content')?.value;
+      const category = document.getElementById('post-category')?.value;
+      const aiDisclosure = document.getElementById('post-ai-disclosure')?.value;
+      const fileInput = document.getElementById('post-file');
+      const file = fileInput?.files[0];
+
+      if (!title || !content) return alert("Please enter both a title and content.");
+
+      let fileUrl = null;
+      let fileType = null;
+
+      try {
+        submitPostBtn.disabled = true;
+        uploadSpinner.classList.remove('hidden');
+
+        if (file) {
+          const storageRef = ref(storage, `uploads/${Date.now()}_${file.name}`);
+          const snapshot = await uploadBytes(storageRef, file);
+          fileUrl = await getDownloadURL(snapshot.ref);
+          fileType = file.type;
+        }
+
+        await addDoc(collection(db, "posts"), {
+          title,
+          content,
+          category,
+          aiDisclosure,
+          fileUrl,
+          fileType,
+          authorUid: currentUser.uid,
+          authorEmail: currentUser.email,
+          createdAt: serverTimestamp()
+        });
+
+        document.getElementById('post-title').value = '';
+        document.getElementById('post-content').value = '';
+        if (fileInput) fileInput.value = '';
+        loadFeed();
+      } catch (err) {
+        alert("Error publishing creation: " + err.message);
+      } finally {
+        submitPostBtn.disabled = false;
+        uploadSpinner.classList.add('hidden');
+      }
+    });
+
+    // Render Feed & Ownership Modal
     async function loadFeed() {
       if (!feedContainer) return;
       feedContainer.innerHTML = '';
@@ -363,23 +509,41 @@
         const querySnapshot = await getDocs(q);
         
         if (querySnapshot.empty) {
-          feedContainer.innerHTML = `<p class="text-slate-500 text-xs text-center py-6 bg-slate-900/40 rounded-xl border border-slate-800/50">No creations published yet. Be the first creator to share!</p>`;
+          feedContainer.innerHTML = `<p class="text-slate-500 text-xs text-center py-6 bg-slate-900/40 rounded-xl border border-slate-800/50">No creations published yet. Be the first to share!</p>`;
           return;
         }
 
-        querySnapshot.forEach((doc) => {
-          const post = doc.data();
+        querySnapshot.forEach((docSnap) => {
+          const post = docSnap.data();
+          const postId = docSnap.id;
           const postEl = document.createElement('div');
-          postEl.className = "bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-2 shadow-lg";
+          postEl.className = "bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3 shadow-lg";
+          
+          let mediaHTML = '';
+          if (post.fileUrl) {
+            if (post.fileType?.startsWith('audio/')) {
+              mediaHTML = `<audio controls class="w-full mt-2 rounded-lg bg-slate-950 p-1"><source src="${post.fileUrl}" type="${post.fileType}">Your browser does not support audio.</audio>`;
+            } else if (post.fileType?.startsWith('video/')) {
+              mediaHTML = `<video controls class="w-full mt-2 rounded-lg bg-slate-950 max-h-60 object-cover"><source src="${post.fileUrl}" type="${post.fileType}"></video>`;
+            } else if (post.fileType?.startsWith('image/')) {
+              mediaHTML = `<img src="${post.fileUrl}" class="w-full mt-2 rounded-lg border border-slate-800 object-cover max-h-64" />`;
+            } else {
+              mediaHTML = `<a href="${post.fileUrl}" target="_blank" class="block mt-2 text-xs text-indigo-400 underline font-medium"><i class="fa-solid fa-file-arrow-down mr-1"></i>View Attached Document</a>`;
+            }
+          }
+
           postEl.innerHTML = `
             <div class="flex justify-between items-start">
               <div>
                 <span class="text-[10px] font-bold text-indigo-400 tracking-wide uppercase">${post.category || 'Creation'}</span>
                 <h3 class="text-sm font-semibold text-white">${post.title}</h3>
               </div>
-              <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800/40 px-2 py-0.5 rounded-full"><i class="fa-solid fa-shield-halved mr-1"></i>Ownership Declared</span>
+              <button onclick="inspectOwnership('${postId}', '${encodeURIComponent(post.title)}', '${post.authorEmail ? post.authorEmail.split('@')[0] : 'Creator'}', '${post.category || 'Creation'}', '${post.aiDisclosure || 'Human'}', '${post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : 'Just now'}')" class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800/40 px-2 py-0.5 rounded-full hover:bg-emerald-900 transition flex items-center gap-1">
+                <i class="fa-solid fa-shield-halved"></i> Ownership Declared
+              </button>
             </div>
             <p class="text-xs text-slate-300 leading-relaxed">${post.content}</p>
+            ${mediaHTML}
             <div class="pt-2 border-t border-slate-800/80 flex justify-between items-center text-[11px] text-slate-500">
               <span class="text-slate-400"><i class="fa-regular fa-user mr-1"></i>${post.authorEmail ? post.authorEmail.split('@')[0] : 'Creator'}</span>
               <span>${post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : 'Just now'}</span>
@@ -389,39 +553,21 @@
         });
       } catch (err) {
         console.error(err);
-        feedContainer.innerHTML = `<p class="text-red-400 text-xs text-center py-4">Failed to load feed. Check Firestore security rules.</p>`;
+        feedContainer.innerHTML = `<p class="text-red-400 text-xs text-center py-4">Failed to load feed. Ensure Firestore rules are published.</p>`;
       }
     }
 
-    if (submitPostBtn) {
-      submitPostBtn.addEventListener('click', async () => {
-        const title = document.getElementById('post-title')?.value;
-        const content = document.getElementById('post-content')?.value;
-        const category = document.getElementById('post-category')?.value;
-
-        if (!title || !content) return alert("Please enter both a title and content.");
-
-        try {
-          await addDoc(collection(db, "posts"), {
-            title,
-            content,
-            category,
-            authorUid: currentUser.uid,
-            authorEmail: currentUser.email,
-            createdAt: serverTimestamp()
-          });
-
-          document.getElementById('post-title').value = '';
-          document.getElementById('post-content').value = '';
-          loadFeed();
-        } catch (err) {
-          alert("Error publishing creation: " + err.message);
-        }
-      });
-    }
+    window.inspectOwnership = function(id, title, author, category, ai, date) {
+      document.getElementById('cert-id').textContent = id;
+      document.getElementById('cert-title').textContent = decodeURIComponent(title);
+      document.getElementById('cert-author').textContent = author;
+      document.getElementById('cert-category').textContent = category;
+      document.getElementById('cert-ai').textContent = ai;
+      document.getElementById('cert-date').textContent = date;
+      document.getElementById('ownership-modal').classList.remove('hidden');
+    };
 
     loadFeed();
   </script>
 </body>
 </html>
-
