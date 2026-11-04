@@ -24,33 +24,80 @@
       <p class="text-[10px] text-slate-400 tracking-wider">CREATE IT. SHARE IT. GET DISCOVERED.</p>
     </div>
     <div id="auth-status" class="text-xs">
-      <button id="auth-btn" class="bg-indigo-600 px-3 py-1.5 rounded-lg text-white font-semibold">Sign In</button>
+      <button id="open-auth-btn" class="bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded-lg text-white font-semibold transition">Get Started</button>
     </div>
   </header>
 
-  <!-- App Main Content Area -->
+  <!-- APP PAGES CONTAINER -->
   <main class="flex-1 p-4 max-w-lg mx-auto w-full space-y-6">
     
-    <!-- Quick Create Post Widget -->
-    <div id="create-post-card" class="bg-slate-900 border border-slate-800 rounded-xl p-4 hidden">
-      <h3 class="text-sm font-semibold mb-2 text-indigo-300">Publish New Creation</h3>
-      <input id="post-title" type="text" placeholder="Creation Title..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm mb-2 text-white focus:outline-none focus:border-indigo-500" />
-      <textarea id="post-content" rows="3" placeholder="Share your original work, lyrics, art story, or prompt..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm mb-2 text-white focus:outline-none focus:border-indigo-500"></textarea>
-      
-      <div class="flex justify-between items-center gap-2">
-        <select id="post-category" class="bg-slate-950 border border-slate-800 text-xs text-slate-300 rounded-lg p-2 focus:outline-none">
-          <option value="Music">🎵 Music & Audio</option>
-          <option value="Art">🎨 Art & Design</option>
-          <option value="Writing">✍️ Writing & Poetry</option>
-          <option value="DIY">🛠️ DIY & Crafts</option>
-          <option value="AI">🤖 AI Creation</option>
-        </select>
-        <button id="submit-post-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-4 py-2 rounded-lg font-medium transition">Publish</button>
+    <!-- 0. LANDING HOME PAGE (Visible to Logged-Out Visitors) -->
+    <section id="page-home" class="app-page space-y-6">
+      <!-- Hero Banner -->
+      <div class="bg-gradient-to-br from-indigo-950/80 via-slate-900 to-pink-950/50 border border-slate-800 rounded-2xl p-6 text-center space-y-4 shadow-xl">
+        <span class="text-[10px] bg-indigo-900/60 text-indigo-300 border border-indigo-700/50 px-3 py-1 rounded-full font-bold uppercase tracking-wider">Creator-First Platform</span>
+        <h2 class="text-2xl font-black text-white leading-tight">You don't have to already be famous to be seen.</h2>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          CreateSpace is where original work gets discovered. Publish music, art, writing, crafts, DIY, and AI creations, connect with fellow creators, and climb the Creator Ladder.
+        </p>
+        
+        <div class="pt-2 flex flex-col sm:flex-row gap-2">
+          <button id="hero-signup-btn" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl text-xs transition shadow-lg shadow-indigo-600/30">Create Free Account</button>
+          <button id="hero-login-btn" class="w-full bg-slate-900 border border-slate-700 text-slate-200 font-semibold py-3 rounded-xl text-xs transition">Sign In</button>
+        </div>
       </div>
-    </div>
 
-    <!-- Live Posts Feed -->
-    <div class="space-y-4">
+      <!-- Feature Grid -->
+      <div class="space-y-3">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 text-center">What You Can Do On CreateSpace</h3>
+        
+        <div class="grid grid-cols-1 gap-3">
+          <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-indigo-950 border border-indigo-800/50 flex items-center justify-center text-indigo-400 shrink-0"><i class="fa-solid fa-compass"></i></div>
+            <div>
+              <h4 class="text-xs font-bold text-white">"You Found Them First" Discovery</h4>
+              <p class="text-[11px] text-slate-400 mt-0.5">Fair algorithms rank creators based on recency and genuine audience activity—not raw follower counts.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-pink-950 border border-pink-800/50 flex items-center justify-center text-pink-400 shrink-0"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+              <h4 class="text-xs font-bold text-white">Creator Ownership Records</h4>
+              <p class="text-[11px] text-slate-400 mt-0.5">Keep full rights to your work. Generate dynamic platform ownership and licensing records upon publication.</p>
+            </div>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-800/50 flex items-center justify-center text-emerald-400 shrink-0"><i class="fa-solid fa-trophy"></i></div>
+            <div>
+              <h4 class="text-xs font-bold text-white">Challenges & Prompts</h4>
+              <p class="text-[11px] text-slate-400 mt-0.5">Participate in non-cash competitions, earn badges, and tap into 170+ creative spark prompts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. FEED PAGE (Visible to Logged-In Users) -->
+    <section id="page-feed" class="app-page space-y-4 hidden">
+      <div id="create-post-card" class="bg-slate-900 border border-slate-800 rounded-xl p-4">
+        <h3 class="text-sm font-semibold mb-2 text-indigo-300">Publish New Creation</h3>
+        <input id="post-title" type="text" placeholder="Creation Title..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm mb-2 text-white focus:outline-none focus:border-indigo-500" />
+        <textarea id="post-content" rows="3" placeholder="Share your original work, lyrics, art story, or prompt..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm mb-2 text-white focus:outline-none focus:border-indigo-500"></textarea>
+        
+        <div class="flex justify-between items-center gap-2">
+          <select id="post-category" class="bg-slate-950 border border-slate-800 text-xs text-slate-300 rounded-lg p-2 focus:outline-none">
+            <option value="Music">🎵 Music & Audio</option>
+            <option value="Art">🎨 Art & Design</option>
+            <option value="Writing">✍️ Writing & Poetry</option>
+            <option value="DIY">🛠️ DIY & Crafts</option>
+            <option value="AI">🤖 AI Creation</option>
+          </select>
+          <button id="submit-post-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-4 py-2 rounded-lg font-medium transition">Publish</button>
+        </div>
+      </div>
+
       <div class="flex justify-between items-center">
         <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Community Feed</h2>
         <span class="text-[10px] bg-indigo-950 text-indigo-300 border border-indigo-800/50 px-2 py-0.5 rounded-full">You Found Them First</span>
@@ -58,24 +105,90 @@
       <div id="feed-container" class="space-y-3">
         <p class="text-slate-500 text-xs text-center py-4">Loading creations from Firebase...</p>
       </div>
-    </div>
+    </section>
+
+    <!-- 2. DISCOVER PAGE -->
+    <section id="page-discover" class="app-page space-y-4 hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-2">
+        <h2 class="text-sm font-bold text-indigo-400 uppercase tracking-wide">You Found Them First</h2>
+        <p class="text-xs text-slate-400">Discover incredible new creators based on recency and engagement—not just follower count.</p>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="text-xs font-semibold text-slate-400 uppercase">Creator Ladder</h3>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg"><span class="text-indigo-400 font-bold">Lvl 1:</span> New Creator</div>
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg"><span class="text-pink-400 font-bold">Lvl 2:</span> Rising Creator</div>
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg"><span class="text-amber-400 font-bold">Lvl 3:</span> Discovered</div>
+          <div class="bg-slate-900 border border-slate-800 p-3 rounded-lg"><span class="text-emerald-400 font-bold">Lvl 4:</span> Featured Creator</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MARKETPLACE PAGE -->
+    <section id="page-market" class="app-page space-y-4 hidden">
+      <div class="bg-gradient-to-r from-indigo-900/40 to-pink-900/40 border border-indigo-800/50 rounded-xl p-4 space-y-2 text-center">
+        <h2 class="text-base font-bold text-white">Creator Pro Starter</h2>
+        <p class="text-xs text-slate-300">Monetize your creations, sell physical/digital items, and get boosted discovery.</p>
+        <p class="text-xs font-semibold text-pink-400">$1.99/mo (First 2 Months) ➔ then $5.99/mo</p>
+        <button class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-4 py-2 rounded-lg font-bold">Upgrade to Pro</button>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="text-xs font-semibold text-slate-400 uppercase">Marketplace Products</h3>
+        <p class="text-xs text-slate-500 text-center py-6 border border-slate-800 rounded-xl bg-slate-900/30">No products listed yet. Pro subscribers can create marketplace listings!</p>
+      </div>
+    </section>
+
+    <!-- 4. CHALLENGES PAGE -->
+    <section id="page-challenges" class="app-page space-y-4 hidden">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Community Competitions</h2>
+      
+      <div class="space-y-3">
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2">
+          <div class="flex justify-between items-center"><span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded-full">FREE ENTRY</span><span class="text-xs text-slate-400">Ends in 3 days</span></div>
+          <h3 class="text-sm font-bold text-white">Original Song Challenge</h3>
+          <p class="text-xs text-slate-400">Write and upload an original acoustic or digital song track. Winners receive the Songwriter Badge!</p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2">
+          <div class="flex justify-between items-center"><span class="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded-full">FREE ENTRY</span><span class="text-xs text-slate-400">Ends in 5 days</span></div>
+          <h3 class="text-sm font-bold text-white">Art From Nothing Challenge</h3>
+          <p class="text-xs text-slate-400">Create a visual artwork using everyday household items or simple tools.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PROMPTS PAGE -->
+    <section id="page-prompts" class="app-page space-y-4 hidden">
+      <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-3 text-center">
+        <h2 class="text-base font-bold text-indigo-400">CREATE SOMETHING Generator</h2>
+        <p class="text-xs text-slate-400">Beat creator's block with over 170+ guided creative prompts.</p>
+        
+        <div id="prompt-box" class="bg-slate-950 border border-slate-800 p-4 rounded-lg text-left text-xs text-slate-200 min-h-[80px] flex items-center justify-center">
+          Tap "Generate Prompt" below to get your first creative spark!
+        </div>
+
+        <button id="generate-prompt-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-5 py-2.5 rounded-lg font-semibold transition">Generate Prompt 🎲</button>
+      </div>
+    </section>
 
   </main>
 
-  <!-- Bottom Navigation Bar (Mobile Friendly) -->
-  <nav class="fixed bottom-0 inset-x-0 bg-slate-900/95 border-t border-slate-800 backdrop-blur p-2 flex justify-around items-center text-xs text-slate-400 z-40">
-    <button class="flex flex-col items-center gap-1 text-indigo-400"><i class="fa-solid fa-house text-base"></i><span>Feed</span></button>
-    <button class="flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-compass text-base"></i><span>Discover</span></button>
-    <button class="flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-store text-base"></i><span>Market</span></button>
-    <button class="flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-trophy text-base"></i><span>Challenges</span></button>
-    <button class="flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-lightbulb text-base"></i><span>Prompts</span></button>
+  <!-- Bottom Navigation Bar (Hidden on Logged-Out Landing Page) -->
+  <nav id="app-nav" class="fixed bottom-0 inset-x-0 bg-slate-900/95 border-t border-slate-800 backdrop-blur p-2 flex justify-around items-center text-xs text-slate-400 z-40 hidden">
+    <button data-tab="feed" class="nav-tab flex flex-col items-center gap-1 text-indigo-400"><i class="fa-solid fa-house text-base"></i><span>Feed</span></button>
+    <button data-tab="discover" class="nav-tab flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-compass text-base"></i><span>Discover</span></button>
+    <button data-tab="market" class="nav-tab flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-store text-base"></i><span>Market</span></button>
+    <button data-tab="challenges" class="nav-tab flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-trophy text-base"></i><span>Challenges</span></button>
+    <button data-tab="prompts" class="nav-tab flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-lightbulb text-base"></i><span>Prompts</span></button>
   </nav>
 
   <!-- Auth Modal -->
   <div id="auth-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-sm space-y-4 relative">
       <button id="close-modal-btn" class="absolute top-4 right-4 text-slate-400 text-sm"><i class="fa-solid fa-xmark"></i></button>
-      <h2 class="text-lg font-bold text-center">Join CreateSpace</h2>
+      <h2 id="modal-title" class="text-lg font-bold text-center">Join CreateSpace</h2>
       <p class="text-xs text-slate-400 text-center">Create. Share. Get Discovered.</p>
       
       <div class="space-y-3 pt-2">
@@ -92,7 +205,7 @@
     </div>
   </div>
 
-  <!-- YOUR FIREBASE INTEGRATION SCRIPT RIGHT BEFORE THE CLOSING BODY TAG -->
+  <!-- FIREBASE INTEGRATION & NAVIGATION SCRIPT -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
@@ -113,7 +226,7 @@
       serverTimestamp 
     } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    // Your Web App's Firebase Configuration
+    // Firebase Configuration
     const firebaseConfig = {
       apiKey: "AIzaSyC483ApX3naDbu-3XyXKblBxatocJUAHCg",
       authDomain: "createspace-82ddf.firebaseapp.com",
@@ -124,19 +237,54 @@
       measurementId: "G-J7LVRG8ZE6"
     };
 
-    // Initialize Firebase Services
+    // Initialize Services
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // State Variables
     let currentUser = null;
 
-    // DOM Elements
+    // --- PAGE NAVIGATION ENGINE ---
+    const navTabs = document.querySelectorAll('.nav-tab');
+    const appPages = document.querySelectorAll('.app-page');
+    const appNav = document.getElementById('app-nav');
+
+    function showPage(pageId) {
+      appPages.forEach(page => page.classList.add('hidden'));
+      const targetPage = document.getElementById(`page-${pageId}`);
+      if (targetPage) targetPage.classList.remove('hidden');
+    }
+
+    navTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetTab = tab.getAttribute('data-tab');
+        showPage(targetTab);
+
+        navTabs.forEach(t => {
+          t.classList.remove('text-indigo-400');
+          t.classList.add('hover:text-slate-200');
+        });
+        tab.classList.add('text-indigo-400');
+      });
+    });
+
+    // --- PROMPT GENERATOR ---
+    const prompts = [
+      "Write a song chorus centered around starting over in a small town.",
+      "Create a digital sketch using only 3 shades of blue and stark lighting.",
+      "Take a macro photo of an everyday object from an unusual angle.",
+      "Write a short 4-line poem about late-night coding or creation.",
+      "Design a minimalist album cover for an indie alternative track."
+    ];
+    document.getElementById('generate-prompt-btn')?.addEventListener('click', () => {
+      const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+      document.getElementById('prompt-box').textContent = randomPrompt;
+    });
+
+    // --- AUTHENTICATION & ROUTING ---
     const authModal = document.getElementById('auth-modal');
     const closeModalBtn = document.getElementById('close-modal-btn');
-    const createPostCard = document.getElementById('create-post-card');
     const authEmailInput = document.getElementById('auth-email');
     const authPasswordInput = document.getElementById('auth-password');
     const loginSubmitBtn = document.getElementById('login-submit-btn');
@@ -145,11 +293,20 @@
     const submitPostBtn = document.getElementById('submit-post-btn');
     const feedContainer = document.getElementById('feed-container');
 
-    // Auth Listener
+    // Trigger buttons to open auth modal
+    document.getElementById('open-auth-btn')?.addEventListener('click', () => authModal.classList.remove('hidden'));
+    document.getElementById('hero-signup-btn')?.addEventListener('click', () => authModal.classList.remove('hidden'));
+    document.getElementById('hero-login-btn')?.addEventListener('click', () => authModal.classList.remove('hidden'));
+
     onAuthStateChanged(auth, (user) => {
       currentUser = user;
       const authStatusEl = document.getElementById('auth-status');
+      
       if (user) {
+        // User logged in: Show Feed & Navbar
+        showPage('feed');
+        appNav.classList.remove('hidden');
+
         authStatusEl.innerHTML = `
           <div class="flex items-center gap-2">
             <span class="text-[11px] text-indigo-300 font-medium">${user.email.split('@')[0]}</span>
@@ -157,17 +314,18 @@
           </div>
         `;
         document.getElementById('logout-btn')?.addEventListener('click', () => signOut(auth));
-        if (createPostCard) createPostCard.classList.remove('hidden');
       } else {
+        // Visitor logged out: Show Landing Home & Hide Navbar
+        showPage('home');
+        appNav.classList.add('hidden');
+
         authStatusEl.innerHTML = `
-          <button id="auth-btn" class="bg-indigo-600 px-3 py-1.5 rounded-lg text-white font-semibold text-xs">Sign In</button>
+          <button id="open-auth-btn-header" class="bg-indigo-600 px-3 py-1.5 rounded-lg text-white font-semibold text-xs">Get Started</button>
         `;
-        document.getElementById('auth-btn')?.addEventListener('click', () => authModal?.classList.remove('hidden'));
-        if (createPostCard) createPostCard.classList.add('hidden');
+        document.getElementById('open-auth-btn-header')?.addEventListener('click', () => authModal.classList.remove('hidden'));
       }
     });
 
-    // Auth Handlers
     signupSubmitBtn?.addEventListener('click', async () => {
       authError?.classList.add('hidden');
       try {
@@ -196,7 +354,7 @@
 
     closeModalBtn?.addEventListener('click', () => authModal?.classList.add('hidden'));
 
-    // Feed Loader
+    // --- FIRESTORE FEED ---
     async function loadFeed() {
       if (!feedContainer) return;
       feedContainer.innerHTML = '';
@@ -235,7 +393,6 @@
       }
     }
 
-    // Post Publisher
     if (submitPostBtn) {
       submitPostBtn.addEventListener('click', async () => {
         const title = document.getElementById('post-title')?.value;
@@ -263,8 +420,8 @@
       });
     }
 
-    // Initial Load
     loadFeed();
   </script>
 </body>
 </html>
+
