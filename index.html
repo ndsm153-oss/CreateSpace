@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  
+  <!-- Mobile & iOS PWA Setup -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="CreateSpace" />
+  <meta name="theme-color" content="#090d16" />
+  <title>CreateSpace</title>
+
+  <!-- Tailwind CSS & FontAwesome Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="h-full flex flex-col font-sans antialiased bg-slate-950 text-slate-100 pb-20 select-none">
+
+  <!-- Header -->
+  <header class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/90 backdrop-blur sticky top-0 z-40">
+    <div>
+      <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent">CreateSpace</h1>
+      <p class="text-[10px] text-slate-400 tracking-wider">CREATE IT. SHARE IT. GET DISCOVERED.</p>
+    </div>
+    <div id="auth-status" class="text-xs">
+      <button id="auth-btn" class="bg-indigo-600 px-3 py-1.5 rounded-lg text-white font-semibold">Sign In</button>
+    </div>
+  </header>
+
+  <!-- App Main Content Area -->
+  <main class="flex-1 p-4 max-w-lg mx-auto w-full space-y-6">
+    
+    <!-- Quick Create Post Widget -->
+    <div id="create-post-card" class="bg-slate-900 border border-slate-800 rounded-xl p-4 hidden">
+      <h3 class="text-sm font-semibold mb-2 text-indigo-300">Publish New Creation</h3>
+      <input id="post-title" type="text" placeholder="Creation Title..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm mb-2 text-white focus:outline-none focus:border-indigo-500" />
+      <textarea id="post-content" rows="3" placeholder="Share your original work, lyrics, art story, or prompt..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm mb-2 text-white focus:outline-none focus:border-indigo-500"></textarea>
+      
+      <div class="flex justify-between items-center gap-2">
+        <select id="post-category" class="bg-slate-950 border border-slate-800 text-xs text-slate-300 rounded-lg p-2 focus:outline-none">
+          <option value="Music">🎵 Music & Audio</option>
+          <option value="Art">🎨 Art & Design</option>
+          <option value="Writing">✍️ Writing & Poetry</option>
+          <option value="DIY">🛠️ DIY & Crafts</option>
+          <option value="AI">🤖 AI Creation</option>
+        </select>
+        <button id="submit-post-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-4 py-2 rounded-lg font-medium transition">Publish</button>
+      </div>
+    </div>
+
+    <!-- Live Posts Feed -->
+    <div class="space-y-4">
+      <div class="flex justify-between items-center">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Community Feed</h2>
+        <span class="text-[10px] bg-indigo-950 text-indigo-300 border border-indigo-800/50 px-2 py-0.5 rounded-full">You Found Them First</span>
+      </div>
+      <div id="feed-container" class="space-y-3">
+        <p class="text-slate-500 text-xs text-center py-4">Loading creations from Firebase...</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Bottom Navigation Bar (Mobile Friendly) -->
+  <nav class="fixed bottom-0 inset-x-0 bg-slate-900/95 border-t border-slate-800 backdrop-blur p-2 flex justify-around items-center text-xs text-slate-400 z-40">
+    <button class="flex flex-col items-center gap-1 text-indigo-400"><i class="fa-solid fa-house text-base"></i><span>Feed</span></button>
+    <button class="flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-compass text-base"></i><span>Discover</span></button>
+    <button class="flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-store text-base"></i><span>Market</span></button>
+    <button class="flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-trophy text-base"></i><span>Challenges</span></button>
+    <button class="flex flex-col items-center gap-1 hover:text-slate-200"><i class="fa-solid fa-lightbulb text-base"></i><span>Prompts</span></button>
+  </nav>
+
+  <!-- Auth Modal -->
+  <div id="auth-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-sm space-y-4 relative">
+      <button id="close-modal-btn" class="absolute top-4 right-4 text-slate-400 text-sm"><i class="fa-solid fa-xmark"></i></button>
+      <h2 class="text-lg font-bold text-center">Join CreateSpace</h2>
+      <p class="text-xs text-slate-400 text-center">Create. Share. Get Discovered.</p>
+      
+      <div class="space-y-3 pt-2">
+        <input id="auth-email" type="email" placeholder="Email Address" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" />
+        <input id="auth-password" type="password" placeholder="Password (6+ characters)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-indigo-500" />
+      </div>
+
+      <p id="auth-error" class="text-xs text-red-400 hidden text-center"></p>
+
+      <div class="space-y-2 pt-2">
+        <button id="login-submit-btn" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-2.5 rounded-lg font-medium text-sm transition">Sign In</button>
+        <button id="signup-submit-btn" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 py-2.5 rounded-lg font-medium text-sm transition">Create Account</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- YOUR FIREBASE INTEGRATION SCRIPT RIGHT BEFORE THE CLOSING BODY TAG -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+    import { 
+      getAuth, 
+      createUserWithEmailAndPassword, 
+      signInWithEmailAndPassword, 
+      signOut, 
+      onAuthStateChanged 
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { 
+      getFirestore, 
+      collection, 
+      addDoc, 
+      getDocs, 
+      query, 
+      orderBy, 
+      serverTimestamp 
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    // Your Web App's Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC483ApX3naDbu-3XyXKblBxatocJUAHCg",
+      authDomain: "createspace-82ddf.firebaseapp.com",
+      projectId: "createspace-82ddf",
+      storageBucket: "createspace-82ddf.firebasestorage.app",
+      messagingSenderId: "609811217885",
+      appId: "1:609811217885:web:ddcef53d08e318581a8a34",
+      measurementId: "G-J7LVRG8ZE6"
+    };
+
+    // Initialize Firebase Services
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // State Variables
+    let currentUser = null;
+
+    // DOM Elements
+    const authModal = document.getElementById('auth-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const createPostCard = document.getElementById('create-post-card');
+    const authEmailInput = document.getElementById('auth-email');
+    const authPasswordInput = document.getElementById('auth-password');
+    const loginSubmitBtn = document.getElementById('login-submit-btn');
+    const signupSubmitBtn = document.getElementById('signup-submit-btn');
+    const authError = document.getElementById('auth-error');
+    const submitPostBtn = document.getElementById('submit-post-btn');
+    const feedContainer = document.getElementById('feed-container');
+
+    // Auth Listener
+    onAuthStateChanged(auth, (user) => {
+      currentUser = user;
+      const authStatusEl = document.getElementById('auth-status');
+      if (user) {
+        authStatusEl.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] text-indigo-300 font-medium">${user.email.split('@')[0]}</span>
+            <button id="logout-btn" class="bg-slate-800 text-slate-300 text-[11px] px-2 py-1 rounded border border-slate-700">Sign Out</button>
+          </div>
+        `;
+        document.getElementById('logout-btn')?.addEventListener('click', () => signOut(auth));
+        if (createPostCard) createPostCard.classList.remove('hidden');
+      } else {
+        authStatusEl.innerHTML = `
+          <button id="auth-btn" class="bg-indigo-600 px-3 py-1.5 rounded-lg text-white font-semibold text-xs">Sign In</button>
+        `;
+        document.getElementById('auth-btn')?.addEventListener('click', () => authModal?.classList.remove('hidden'));
+        if (createPostCard) createPostCard.classList.add('hidden');
+      }
+    });
+
+    // Auth Handlers
+    signupSubmitBtn?.addEventListener('click', async () => {
+      authError?.classList.add('hidden');
+      try {
+        await createUserWithEmailAndPassword(auth, authEmailInput.value, authPasswordInput.value);
+        authModal?.classList.add('hidden');
+      } catch (err) {
+        if (authError) {
+          authError.textContent = err.message;
+          authError.classList.remove('hidden');
+        }
+      }
+    });
+
+    loginSubmitBtn?.addEventListener('click', async () => {
+      authError?.classList.add('hidden');
+      try {
+        await signInWithEmailAndPassword(auth, authEmailInput.value, authPasswordInput.value);
+        authModal?.classList.add('hidden');
+      } catch (err) {
+        if (authError) {
+          authError.textContent = err.message;
+          authError.classList.remove('hidden');
+        }
+      }
+    });
+
+    closeModalBtn?.addEventListener('click', () => authModal?.classList.add('hidden'));
+
+    // Feed Loader
+    async function loadFeed() {
+      if (!feedContainer) return;
+      feedContainer.innerHTML = '';
+      try {
+        const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+        
+        if (querySnapshot.empty) {
+          feedContainer.innerHTML = `<p class="text-slate-500 text-xs text-center py-6 bg-slate-900/40 rounded-xl border border-slate-800/50">No creations published yet. Be the first creator to share!</p>`;
+          return;
+        }
+
+        querySnapshot.forEach((doc) => {
+          const post = doc.data();
+          const postEl = document.createElement('div');
+          postEl.className = "bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-2 shadow-lg";
+          postEl.innerHTML = `
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-[10px] font-bold text-indigo-400 tracking-wide uppercase">${post.category || 'Creation'}</span>
+                <h3 class="text-sm font-semibold text-white">${post.title}</h3>
+              </div>
+              <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800/40 px-2 py-0.5 rounded-full"><i class="fa-solid fa-shield-halved mr-1"></i>Ownership Declared</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">${post.content}</p>
+            <div class="pt-2 border-t border-slate-800/80 flex justify-between items-center text-[11px] text-slate-500">
+              <span class="text-slate-400"><i class="fa-regular fa-user mr-1"></i>${post.authorEmail ? post.authorEmail.split('@')[0] : 'Creator'}</span>
+              <span>${post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : 'Just now'}</span>
+            </div>
+          `;
+          feedContainer.appendChild(postEl);
+        });
+      } catch (err) {
+        console.error(err);
+        feedContainer.innerHTML = `<p class="text-red-400 text-xs text-center py-4">Failed to load feed. Check Firestore security rules.</p>`;
+      }
+    }
+
+    // Post Publisher
+    if (submitPostBtn) {
+      submitPostBtn.addEventListener('click', async () => {
+        const title = document.getElementById('post-title')?.value;
+        const content = document.getElementById('post-content')?.value;
+        const category = document.getElementById('post-category')?.value;
+
+        if (!title || !content) return alert("Please enter both a title and content.");
+
+        try {
+          await addDoc(collection(db, "posts"), {
+            title,
+            content,
+            category,
+            authorUid: currentUser.uid,
+            authorEmail: currentUser.email,
+            createdAt: serverTimestamp()
+          });
+
+          document.getElementById('post-title').value = '';
+          document.getElementById('post-content').value = '';
+          loadFeed();
+        } catch (err) {
+          alert("Error publishing creation: " + err.message);
+        }
+      });
+    }
+
+    // Initial Load
+    loadFeed();
+  </script>
+</body>
+</html>
